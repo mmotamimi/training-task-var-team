@@ -15,16 +15,19 @@ export const content = css`
 
 export const hero = css`
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  gap: 16px;
-  padding: 32px 0;
-  text-align: center;
+  height: 80vh;
 `;
 
 export const actions = css`
   display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: clamp(10rem, 6vw, 48px);
+
+  & .MuiIconButton-root {
+    font-size: 80px;
+  }
 `;
