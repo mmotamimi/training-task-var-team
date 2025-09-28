@@ -1,10 +1,10 @@
 import { Router, createRoute, createRootRoute } from "@tanstack/react-router";
 
-import RootLayout from "./shared/layout/RootLayout";
-import LandingPage from "./features/landing/LandingPage";
-import WeatherPage from "./features/weather/WeatherPage";
-import CurrencyPage from "./features/currency/CurrencyPage";
-import NewsPage from "./features/news/NewsPage";
+import RootLayout from "./RootLayout";
+import LandingPage from "../features/landing/LandingPage";
+import WeatherPage from "../features/weather/WeatherPage";
+import CurrencyPage from "../features/currency/CurrencyPage";
+import NewsPage from "../features/news/NewsPage";
 
 const rootRoute = createRootRoute({
   component: RootLayout,
