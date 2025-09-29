@@ -24,13 +24,13 @@ export const fetchArticles = async (options: NewsSearchOptions): Promise<Article
 
     const res = await axios.get(NewsUrl, { params });
 
-    return res.data.data.map((a: Article) => ({
+    return res.data.data.map((a: any) => ({
       title: a.title,
       description: a.description,
       url: a.url,
       source: a.source,
       image: a.image,
-      publishedAt: a.publishedAt,
+      publishedAt: a.published_at,
     }));
   } catch (error: any) {
     console.error("Error fetching news:", error);
