@@ -1,0 +1,25 @@
+.page{min-height:100vh; display:flex; flex-direction:column}
+
+/* Content grid */
+.grid{
+  display:grid; gap:24px;
+  grid-template-columns: 2fr 1fr;
+  grid-auto-rows: min-content;
+  margin: 24px 0 36px;
+}
+.leftCol{display:flex; flex-direction:column; gap:16px}
+.rightCol{position:relative}
+.fullRow{grid-column:1 / -1; display:flex; flex-direction:column; gap:10px}
+
+.updated{color:var(--muted); font-size:.9rem}
+
+.footer{
+  margin-top:auto; border-top:1px solid var(--border);
+  background:var(--panel); color:var(--muted)
+}
+
+/* Mobile/tablet */
+@media (max-width: 1024px){
+  .grid{grid-template-columns: 1fr}
+  .rightCol{order:-1} /* converter first on mobile if you prefer */
+}
