@@ -2,7 +2,7 @@ import { Typography, IconButton, Divider, Snackbar, CardActions } from '@mui/mat
 import { useRef, useState } from "react";
 import { FiCopy } from 'react-icons/fi';
 import { RiExternalLinkFill } from 'react-icons/ri';
-import type Article from '../Types/Article';
+import type { Article } from '../Types/Types';
 import {
     StyledCard,
     StyledCardContent,

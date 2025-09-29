@@ -2,8 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { Grid, Typography } from "@mui/material";
 import ArticleCard from "../Components/ArticleCard";
 import { categories, countries, languages } from "../Constants/NewsConstants";
-import type Article from "../Types/Article";
-import type NewsSearchOptions from "../Types/NewsSearchOptions";
+import type {Article,NewsSearchOptions} from "../Types/Types";
 import fetchArticles from "../APIs/NewsApi";
 import ErrorPage from "../../../shared/Error/ErrorPage";
 import {

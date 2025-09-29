@@ -1,6 +1,5 @@
 import axios from "axios";
-import type Article  from "../Types/Article";
-import type NewsSearchOptions from "../Types/NewsSearchOptions";
+import type {Article,NewsSearchOptions} from "../Types/Types";
 const MEDIASTACK_KEY = import.meta.env.VITE_MEDIASTACK_KEY;
 const NewsUrl = import.meta.env.VITE_NEWS_URL;
 
