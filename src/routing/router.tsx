@@ -5,6 +5,7 @@ import LandingPage from "../features/landing/LandingPage";
 import WeatherPage from "../features/weather/WeatherPage";
 import CurrencyPage from "../features/currency/CurrencyPage";
 import NewsPage from "../features/news/NewsPage";
+import ErrorPage from "../shared/Error/ErrorPage";
 
 const rootRoute = createRootRoute({
   component: RootLayout,
@@ -34,11 +35,18 @@ const newsRoute = createRoute({
   component: NewsPage,
 });
 
+const wildcardRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '$wildcard*',
+  component: () => <ErrorPage />,
+})
+
 const routeTree = rootRoute.addChildren([
   landingRoute,
   weatherRoute,
   currencyRoute,
   newsRoute,
+  wildcardRoute,
 ]);
 
 const router = new Router({ routeTree });
