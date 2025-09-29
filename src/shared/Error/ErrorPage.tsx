@@ -11,7 +11,6 @@ interface ErrorPageProps {
 
 export default function ErrorPage({ message, code }: ErrorPageProps) {
   return (
-    <PageContainer>
       <StyledContainer>
         <IconBox>
           <FaExclamationTriangle />
@@ -29,6 +28,5 @@ export default function ErrorPage({ message, code }: ErrorPageProps) {
           Go to Home
         </Button>
       </StyledContainer>
-    </PageContainer>
   )
 }
