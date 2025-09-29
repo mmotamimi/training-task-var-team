@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Grid } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import ArticleCard from "../Components/ArticleCard";
 import { categories, countries, languages } from "../Constants/NewsConstants";
 import type Article from "../Types/Article";
@@ -17,6 +17,7 @@ import {
 
 export default function NewsContainer() {
     const [Error, setError] = useState(false);
+    const [Loading, setLoading] = useState(true);
     const [keyword, setKeyword] = useState("");
     const [category, setCategory] = useState("");
     const [country, setCountry] = useState("");
@@ -41,6 +42,7 @@ export default function NewsContainer() {
             const data = await fetchArticles(options);
             setAllArticles(data);
             setVisibleCount(6);
+            setLoading(false);
         }
         catch {
             setError(true);
@@ -57,6 +59,7 @@ export default function NewsContainer() {
 
     if (Error)
         return <ErrorPage message="Failed to fetch news. Check your internet connection or try again later." />;
+    if (Loading) return <Typography>Loading</Typography>
 
     return (
         <Page>
