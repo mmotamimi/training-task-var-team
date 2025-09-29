@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "../navbar/Navbar";
-import * as s from "./pageContainer.styles";
+import * as styles from "./pageContainer.styles";
 
 interface PageContainerProps {
   children: React.ReactNode;
@@ -14,9 +14,9 @@ const PageContainer: React.FC<PageContainerProps> = ({
   menuEnabled,
 }) => {
   return (
-    <div className={s.pageRoot}>
+    <div className={styles.pageRoot}>
       <Navbar showSearch={showSearch} menuEnabled={menuEnabled} />
-      <main className={s.content}>{children}</main>
+      <main className={styles.content}>{children}</main>
     </div>
   );
 };
