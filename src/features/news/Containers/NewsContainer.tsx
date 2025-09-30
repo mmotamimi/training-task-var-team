@@ -1,21 +1,15 @@
 import { useState, useEffect, useRef } from "react";
-import { Grid, Typography } from "@mui/material";
+import { Grid, Typography, Button } from "@mui/material";
 import ArticleCard from "../Components/ArticleCard";
 import { categories, countries, languages } from "../Constants/NewsConstants";
-import type {Article,NewsSearchOptions} from "../Types/Types";
+import type { Article, NewsSearchOptions } from "../Types/Types";
 import fetchArticles from "../APIs/NewsApi";
 import { useError } from "../../../shared/Error/context/ErrorContext";
-import {
-    Page,
-    Controls,
-    DateRange,
-    SearchButton,
-    LoadMoreContainer,
-    LoadMoreBtn
-} from './NewsContainer.styles';
+import { useTheme } from "@mui/material/styles";
+import { createStyles } from "./NewsContainer.styles";
 
 export default function NewsContainer() {
-    const {setError } = useError();
+    const { setError } = useError();
     const [Loading, setLoading] = useState(true);
     const [keyword, setKeyword] = useState("");
     const [category, setCategory] = useState("");
@@ -27,6 +21,8 @@ export default function NewsContainer() {
     const [visibleCount, setVisibleCount] = useState(6);
 
     const didFetch = useRef(false);
+    const theme = useTheme();
+    const styles = createStyles(theme);
 
     const loadArticles = async () => {
         const options: NewsSearchOptions = {
@@ -44,11 +40,11 @@ export default function NewsContainer() {
             setLoading(false);
         }
         catch (err: any) {
-    // Check if the error has a message and optional code
-    const message = err.message || "Failed to fetch articles";
-    const code = err.code || 500; // fallback code
-    setError(message, code);
-  }
+            // Check if the error has a message and optional code
+            const message = err.message || "Failed to fetch articles";
+            const code = err.code || 500; // fallback code
+            setError(message, code);
+        }
     };
 
     useEffect(() => {
@@ -58,12 +54,12 @@ export default function NewsContainer() {
     }, []);
 
     const visibleArticles = allArticles.slice(0, visibleCount);
- 
+
     if (Loading) return <Typography>Loading</Typography>
 
     return (
-        <Page>
-            <Controls>
+        <div className={styles.page}>
+            <div className={styles.controls}>
                 <input
                     placeholder="Keyword"
                     value={keyword}
@@ -87,9 +83,9 @@ export default function NewsContainer() {
                         <option key={l.code} value={l.code}>{l.name}</option>
                     ))}
                 </select>
-            </Controls>
+            </div>
 
-            <DateRange>
+            <div className={styles.dateRange}>
                 <label>
                     From:
                     <input
@@ -106,11 +102,11 @@ export default function NewsContainer() {
                         onChange={(e) => setToDate(e.target.value)}
                     />
                 </label>
-            </DateRange>
+            </div>
 
-            <SearchButton color="primary" variant="contained" onClick={loadArticles}>
+            <Button className={styles.searchButton} color="primary" variant="contained" onClick={loadArticles}>
                 Search....
-            </SearchButton>
+            </Button>
 
             {visibleArticles.length === 0 ? (
                 <p>No articles found.</p>
@@ -125,18 +121,19 @@ export default function NewsContainer() {
                     </Grid>
 
                     {visibleCount < allArticles.length && (
-                        <LoadMoreContainer>
-                            <LoadMoreBtn
+                        <div className={styles.loadMoreContainer}>
+                            <Button
+                                className={styles.loadMoreBtn}
                                 color="primary"
                                 variant="contained"
                                 onClick={() => setVisibleCount((prev) => prev + 6)}
                             >
                                 Load More
-                            </LoadMoreBtn>
-                        </LoadMoreContainer>
+                            </Button>
+                        </div>
                     )}
                 </>
             )}
-        </Page>
+        </div>
     );
 }
