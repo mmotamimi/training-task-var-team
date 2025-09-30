@@ -1,4 +1,3 @@
-import React from "react";
 import { Outlet } from "@tanstack/react-router";
 import { ErrorProvider, useError } from "../shared/Error/context/ErrorContext"
 import ErrorDialog from "../shared/Error/ErrorDialog";

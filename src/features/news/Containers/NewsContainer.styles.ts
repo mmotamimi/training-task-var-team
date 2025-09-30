@@ -1,7 +1,6 @@
 import { css } from "@emotion/css";
-import type { Theme } from "@mui/material";
 
-export const createStyles = (theme: Theme) => ({
+export const createStyles = () => ({
   page: css({
     padding: '1rem',
     maxWidth: 1200,
