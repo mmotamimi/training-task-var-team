@@ -5,13 +5,15 @@ import { Link } from "@tanstack/react-router";
 import { TiWeatherPartlySunny } from "react-icons/ti";
 import { MdOutlineCurrencyExchange } from "react-icons/md";
 import { CiGlobe } from "react-icons/ci";
-import * as s from "../../shared/layout/pageContainer.styles";
+import { createStyles } from "../../shared/layout/pageContainer.styles";
 
 const LandingPage: React.FC = () => {
+  const styles = createStyles();
+
   return (
     <PageContainer>
-      <section className={s.hero}>
-        <div className={s.actions}>
+      <section className={styles.hero}>
+        <div className={styles.actions}>
           <IconButton component={Link} to="/weather">
             <TiWeatherPartlySunny />
           </IconButton>
