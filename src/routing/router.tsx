@@ -5,9 +5,11 @@ import LandingPage from "../features/landing/LandingPage";
 import WeatherPage from "../features/weather/WeatherPage";
 import CurrencyPage from "../features/currency/CurrencyPage";
 import NewsPage from "../features/news/NewsPage";
+import NotFoundHandler from "../shared/Error/NotFoundHandler";
 
 const rootRoute = createRootRoute({
   component: RootLayout,
+  notFoundComponent: NotFoundHandler,
 });
 
 const landingRoute = createRoute({
@@ -33,6 +35,7 @@ const newsRoute = createRoute({
   path: "/news",
   component: NewsPage,
 });
+
 
 const routeTree = rootRoute.addChildren([
   landingRoute,
