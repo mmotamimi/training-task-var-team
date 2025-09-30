@@ -4,7 +4,7 @@ import ArticleCard from "../Components/ArticleCard";
 import { categories, countries, languages } from "../Constants/NewsConstants";
 import type {Article,NewsSearchOptions} from "../Types/Types";
 import fetchArticles from "../APIs/NewsApi";
-import ErrorPage from "../../../shared/Error/ErrorPage";
+import { useError } from "../../../shared/Error/context/ErrorContext";
 import {
     Page,
     Controls,
@@ -15,7 +15,7 @@ import {
 } from './NewsContainer.styles';
 
 export default function NewsContainer() {
-    const [Error, setError] = useState(false);
+    const {setError } = useError();
     const [Loading, setLoading] = useState(true);
     const [keyword, setKeyword] = useState("");
     const [category, setCategory] = useState("");
@@ -43,9 +43,12 @@ export default function NewsContainer() {
             setVisibleCount(6);
             setLoading(false);
         }
-        catch {
-            setError(true);
-        }
+        catch (err: any) {
+    // Check if the error has a message and optional code
+    const message = err.message || "Failed to fetch articles";
+    const code = err.code || 500; // fallback code
+    setError(message, code);
+  }
     };
 
     useEffect(() => {
@@ -55,9 +58,7 @@ export default function NewsContainer() {
     }, []);
 
     const visibleArticles = allArticles.slice(0, visibleCount);
-
-    if (Error)
-        return <ErrorPage message="Failed to fetch news. Check your internet connection or try again later." />;
+ 
     if (Loading) return <Typography>Loading</Typography>
 
     return (
