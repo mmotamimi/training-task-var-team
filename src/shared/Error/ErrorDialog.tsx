@@ -1,7 +1,8 @@
-import { Typography, Button, Dialog, DialogContent, DialogTitle } from '@mui/material'
+import { Typography, Button, Dialog, DialogContent, DialogTitle,Box } from '@mui/material'
 import { FaExclamationTriangle } from 'react-icons/fa'
 import { Link } from "@tanstack/react-router";
-import { IconBox, MessageText } from "./ErrorDialog.styles"
+import { useTheme } from '@mui/material/styles';
+import {createStyles} from "./ErrorDialog.styles"
 
 interface ErrorDialogProps {
   open: boolean
@@ -11,12 +12,14 @@ interface ErrorDialogProps {
 }
 
 export default function ErrorDialog({ open, onClose, message, code }: ErrorDialogProps) {
+      const theme = useTheme();
+  const styles = createStyles(theme);
   return (
     <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth>
       <DialogTitle>
-        <IconBox>
+        <Box className={styles.iconBox}>
           <FaExclamationTriangle />
-        </IconBox>
+        </Box>
       </DialogTitle>
 
       <DialogContent sx={{ textAlign: "center" }}>
@@ -26,9 +29,9 @@ export default function ErrorDialog({ open, onClose, message, code }: ErrorDialo
         <Typography variant="h6" gutterBottom>
           {message || 'Oops! Page not found.'}
         </Typography>
-        <MessageText variant="body1">
+        <Typography className={styles.messageText} variant="body1">
           The page you are looking for might have been removed or is temporarily unavailable.
-        </MessageText>
+        </Typography>
         <Button 
           variant="contained" 
           color="primary" 
