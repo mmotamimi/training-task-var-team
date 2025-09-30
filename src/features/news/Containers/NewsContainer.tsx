@@ -5,7 +5,6 @@ import { categories, countries, languages } from "../Constants/NewsConstants";
 import type { Article, NewsSearchOptions } from "../Types/Types";
 import fetchArticles from "../APIs/NewsApi";
 import { useError } from "../../../shared/Error/context/ErrorContext";
-import { useTheme } from "@mui/material/styles";
 import { createStyles } from "./NewsContainer.styles";
 
 export default function NewsContainer() {
@@ -21,8 +20,7 @@ export default function NewsContainer() {
     const [visibleCount, setVisibleCount] = useState(6);
 
     const didFetch = useRef(false);
-    const theme = useTheme();
-    const styles = createStyles(theme);
+    const styles = createStyles();
 
     const loadArticles = async () => {
         const options: NewsSearchOptions = {
