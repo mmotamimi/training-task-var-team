@@ -1,21 +1,16 @@
-import { Typography, IconButton, Divider, Snackbar, CardActions } from '@mui/material';
+import { IconButton, Divider, Snackbar, CardActions, Card, CardContent, Typography } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 import { useRef, useState } from "react";
 import { FiCopy } from 'react-icons/fi';
 import { RiExternalLinkFill } from 'react-icons/ri';
 import type { Article } from '../Types/Types';
-import {
-    StyledCard,
-    StyledCardContent,
-    Row,
-    ActionsContainer,
-    Image,
-    Title,
-    Description
-} from './ArticleCard.styles';
+import { createStyles } from './ArticleCard.styles';
 
 const ArticleCard = (a: Article) => {
     const titleRef = useRef<HTMLHeadingElement>(null);
     const [open, setOpen] = useState(false);
+    const theme = useTheme();
+    const styles = createStyles(theme);
 
     const handleCopy = () => {
         if (titleRef.current) {
@@ -27,37 +22,38 @@ const ArticleCard = (a: Article) => {
     };
 
     return (
-        <StyledCard>
-            <StyledCardContent>
-                <Row>
+        <Card className={styles.card}>
+            <CardContent className={styles.cardContent}>
+                <div className={styles.row}>
                     {a.image && (
-                        <Image
+                        <img
+                            className={styles.image}
                             src={a.image || "https://via.placeholder.com/300x120?text=No+Image"}
                             alt={a.title}
                         />
                     )}
-                    <Title ref={titleRef}>
+                    <Typography className={styles.title} ref={titleRef}>
                         {a.title}
-                    </Title>
-                </Row>
+                    </Typography>
+                </div>
 
                 <Divider />
 
-                <Description>
+                <Typography className={styles.description}>
                     {a.description
                         ? a.description.length > 200
                             ? a.description.slice(0, 200) + "..."
                             : a.description
                         : "No description available."}
-                </Description>
+                </Typography>
 
                 <Typography color='secondary'>
                     {`${a.source} | Published: ${new Date(a.publishedAt).toLocaleDateString()}`}
                 </Typography>
-            </StyledCardContent>
+            </CardContent>
 
-            <CardActions>
-                <ActionsContainer>
+            <CardActions className={styles.actionsContainer}>
+                <div>
                     <IconButton color="primary" aria-label="copy link" onClick={handleCopy}>
                         <FiCopy size={22} />
                     </IconButton>
@@ -71,9 +67,9 @@ const ArticleCard = (a: Article) => {
                         message="Copied!"
                         anchorOrigin={{ vertical: "top", horizontal: "center" }}
                     />
-                </ActionsContainer>
+                </div>
             </CardActions>
-        </StyledCard>
+        </Card>
     );
 };
 
