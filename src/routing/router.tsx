@@ -41,7 +41,10 @@ const routeTree = rootRoute.addChildren([
   newsRoute,
 ]);
 
-const router = new Router({ routeTree });
+const router = new Router({
+  routeTree,
+  basepath: "/training-task-var-team",
+});
 
 declare module "@tanstack/react-router" {
   interface Register {
