@@ -2,7 +2,7 @@ import React from "react";
 import { AppBar, Toolbar, Button, IconButton, TextField } from "@mui/material";
 import { Link } from "@tanstack/react-router";
 import { IoIosMenu } from "react-icons/io";
-import * as s from "./navbar.styles";
+import { createStyles } from "./navbar.styles";
 
 interface NavbarProps {
   showSearch?: boolean;
@@ -13,13 +13,15 @@ const Navbar: React.FC<NavbarProps> = ({
   showSearch = false,
   menuEnabled = true,
 }) => {
+  const styles = createStyles();
+
   return (
     <AppBar position="sticky">
       <Toolbar>
         {/* Left: nav buttons */}
         <div>
           <Button
-            className={s.navButton}
+            className={styles.navButton}
             color="inherit"
             component={Link}
             to="/"
@@ -27,7 +29,7 @@ const Navbar: React.FC<NavbarProps> = ({
             Home
           </Button>
           <Button
-            className={s.navButton}
+            className={styles.navButton}
             color="inherit"
             component={Link}
             to="/weather"
@@ -35,7 +37,7 @@ const Navbar: React.FC<NavbarProps> = ({
             Weather
           </Button>
           <Button
-            className={s.navButton}
+            className={styles.navButton}
             color="inherit"
             component={Link}
             to="/currency"
@@ -43,7 +45,7 @@ const Navbar: React.FC<NavbarProps> = ({
             Currency
           </Button>
           <Button
-            className={s.navButton}
+            className={styles.navButton}
             color="inherit"
             component={Link}
             to="/news"
@@ -53,10 +55,10 @@ const Navbar: React.FC<NavbarProps> = ({
         </div>
 
         {/* Center: optional search */}
-        <div className={s.grow}>
+        <div className={styles.grow}>
           {showSearch && (
             <TextField
-              className={s.center}
+              className={styles.center}
               placeholder="Search city..."
               size="small"
               variant="outlined"
