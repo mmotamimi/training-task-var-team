@@ -1,4 +1,6 @@
-import Loading from '../../shared/components/Loading'
+
+
+import Loading from '../../../shared/Loading/Loading'
 import type { Props } from '../models/types'
 import { createStyles } from './InfoTile.styles'
 

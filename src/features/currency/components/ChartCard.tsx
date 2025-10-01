@@ -1,6 +1,7 @@
-import Loading from '../../shared/components/Loading'
+
 import { LineChart } from '@mui/x-charts/LineChart'
 import { createStyles } from './ChartCard.styles'
+import Loading from '../../../shared/Loading/Loading';
 
 type Datum = { date: string; value: number }
 

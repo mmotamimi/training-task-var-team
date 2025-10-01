@@ -3,10 +3,10 @@ import { Router, createRoute, createRootRoute } from "@tanstack/react-router";
 import RootLayout from "./RootLayout";
 import LandingPage from "../features/landing/LandingPage";
 import WeatherPage from "../features/weather/WeatherPage";
-import CurrencyPage from "../features/currency/CurrencyPage";
 import NewsPage from "../features/news/NewsPage";
 import NotFoundHandler from "../shared/Error/NotFoundHandler";
 import BookMarkNewsPage from "../features/news/BookMarkPage";
+import CurrencyPage from "../features/currency/pages/CurrencyPage";
 
 const rootRoute = createRootRoute({
   component: RootLayout,
