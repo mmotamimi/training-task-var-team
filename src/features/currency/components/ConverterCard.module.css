@@ -1,8 +1,0 @@
-.card{
-  background:var(--panel); border:1px solid var(--border); border-radius:16px; box-shadow:var(--shadow);
-  padding:16px; display:flex; flex-direction:column; gap:14px;
-  position:sticky; top:24px;  /* stays visible while scrolling on desktop */
-}
-.row{display:flex; align-items:center; justify-content:space-between; gap:12px}
-.label{color:var(--muted); text-transform:lowercase}
-@media (max-width:1024px){ .card{position:static} }

@@ -1,8 +1,0 @@
-.tile{
-  background:linear-gradient(180deg,#eef2ff,#000000);
-  border:1px solid var(--border); border-radius:16px;
-  box-shadow:var(--shadow); padding:18px; min-height:160px;
-  display:flex; flex-direction:column; justify-content:center; text-align:center;
-}
-.title{font-weight:700; color:var(--ink); margin-bottom:8px}
-.value{font-size:28px; font-weight:700}

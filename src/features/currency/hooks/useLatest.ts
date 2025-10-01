@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { getLatest } from '../api/api'
+import { getLatest } from '../services/currencyService'
 
 export function useLatest(base: string, quote: string) {
   const [rate, setRate] = useState<number | undefined>(undefined)

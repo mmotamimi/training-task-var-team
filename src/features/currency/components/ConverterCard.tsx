@@ -1,5 +1,5 @@
-import styles from './ConverterCard.module.css'
 import SelectPill from './SelectPill'
+import { createStyles } from './ConverterCard.styles'
 
 export default function ConverterCard({
   base, quote, onBaseChange, onQuoteChange, symbols,
@@ -9,6 +9,8 @@ export default function ConverterCard({
   onQuoteChange: (v: string) => void;
   symbols: Record<string, string>;
 }) {
+  const styles = createStyles()
+
   return (
     <aside className={styles.card}>
       <div className={styles.row}>

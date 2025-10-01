@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { getTimeseries } from '../api/api'
+import { getTimeseries } from '../services/currencyService';
 
 function fmt(d: Date) { return d.toISOString().slice(0, 10) }
 function daysAgo(n: number) { const d = new Date(); d.setDate(d.getDate() - n); return d }

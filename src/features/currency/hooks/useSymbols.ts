@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
-import { getSymbols } from '../api/api'
-import type { SymbolsMap } from '../api/types'
+import type { SymbolsMap } from '../models/types'
+import { getSymbols } from '../services/currencyService'
 
 export function useSymbols() {
   const [symbols, setSymbols] = useState<SymbolsMap>({})

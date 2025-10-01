@@ -1,14 +1,14 @@
-import styles from './Loading.module.css'
 import React from 'react'
+import { createStyles } from './Loading.styles'
 
 type Variant = 'ring' | 'dots'
 
 type Props = {
   label?: string
-  full?: boolean        // centered block that reserves space
-  overlay?: boolean     // glass overlay covering parent
-  variant?: Variant     // 'ring' | 'dots'
-  size?: number         // ring size px
+  full?: boolean
+  overlay?: boolean
+  variant?: Variant
+  size?: number
   className?: string
 }
 
@@ -20,6 +20,8 @@ export default function Loading({
   size = 28,
   className,
 }: Props) {
+  const styles = createStyles()
+
   const cls = [
     styles.wrap,
     full ? styles.full : '',
@@ -38,7 +40,9 @@ export default function Loading({
         />
       ) : (
         <span className={styles.dots} aria-hidden="true">
-          <i /><i /><i />
+          <i />
+          <i />
+          <i />
         </span>
       )}
       {label && <span className={styles.text}>{label}</span>}

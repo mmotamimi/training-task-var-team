@@ -1,14 +1,6 @@
-import Loading from '../../shared/components/Loading';
-import styles from './ChartCard.module.css';
-import {
-  ResponsiveContainer,
-  LineChart,
-  Line,
-  CartesianGrid,
-  XAxis,
-  YAxis,
-  Tooltip,
-} from 'recharts'
+import Loading from '../../shared/components/Loading'
+import { LineChart } from '@mui/x-charts/LineChart'
+import { createStyles } from './ChartCard.styles'
 
 type Datum = { date: string; value: number }
 
@@ -25,6 +17,7 @@ export default function ChartCard({
   loading?: boolean
   error?: string | null
 }) {
+  const styles = createStyles()
   const isEmpty = !loading && !error && data.length === 0
 
   return (
@@ -37,7 +30,9 @@ export default function ChartCard({
       </div>
 
       <div className={styles.box}>
-        {loading && <Loading overlay label="Fetching chart…" variant="ring" size={34} />}
+        {loading && (
+          <Loading overlay label="Fetching chart…" variant="ring" size={34} />
+        )}
 
         {error && !loading && (
           <div className={styles.state} role="alert">
@@ -45,20 +40,16 @@ export default function ChartCard({
           </div>
         )}
 
-        {isEmpty && (
-          <div className={styles.state}>No data</div>
-        )}
+        {isEmpty && <div className={styles.state}>No data</div>}
 
         {!loading && !error && data.length > 0 && (
-          <ResponsiveContainer width="100%" height="100%">
-            <LineChart data={data}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="date" minTickGap={24} />
-              <YAxis domain={['auto', 'auto']} />
-              <Tooltip />
-              <Line type="monotone" dataKey="value" dot={{ r: 3 }} strokeWidth={2} />
-            </LineChart>
-          </ResponsiveContainer>
+          <LineChart
+            xAxis={[{ data: data.map((d) => d.date), scaleType: 'point' }]}
+            series={[{ data: data.map((d) => d.value), label: 'Value' }]}
+            width={500}
+            height={300}
+            grid={{ horizontal: true, vertical: false }}
+          />
         )}
       </div>
     </section>

@@ -1,7 +1,7 @@
 export type SymbolsMap = Record<string, string>
 
 // open.er-api.com responses
-export type ERALatest = {
+export type ERAResponse = {
   result: 'success' | 'error'
   base_code: string
   time_last_update_utc: string
@@ -23,4 +23,11 @@ export type TimeseriesResp = {
   start_date: string
   end_date: string
   rates: Record<string, Record<string, number>>
+}
+
+export type Props = {
+  title: string
+  value?: string
+  loading?: boolean
+  error?: string | null
 }
