@@ -46,25 +46,17 @@ export const createStyles = () => ({
       boxShadow: '0 0 0 2px rgba(0,0,0,0.1)',
     },
   }),
-  searchButton: css({
+  buttonsContainer: css({
+    display: 'flex',
+    gap: '1rem',
+    marginBottom: '1rem',
+  }),
+  button: css({
     marginTop: '0.5rem',
     padding: '0.6rem 1.2rem',
     '&:hover': {
       backgroundColor: '#333',
       boxShadow: '0 2px 6px rgba(0,0,0,0.2)',
-    },
-  }),
-  loadMoreContainer: css({
-    display: 'flex',
-    justifyContent: 'center',
-    marginTop: '1rem',
-  }),
-  loadMoreBtn: css({
-    marginTop: '1rem',
-    padding: '0.6rem 1.2rem',
-    width: '30%',
-    '&:hover': {
-      backgroundColor: '#333',
     },
   }),
 });
