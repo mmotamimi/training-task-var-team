@@ -1,4 +1,12 @@
-import CurrencyContainer from '../containers/CurrencyContainer'
+import PageContainer from "../../../shared/layout/PageContainer";
+import CurrencyContainer from "../containers/CurrencyContainer";
+
+
+
 export default function CurrencyPage() {
-  return <CurrencyContainer />
+  return (
+    <PageContainer showSearch={false} menuEnabled={true}>
+      <CurrencyContainer />
+    </PageContainer>
+  );
 }
