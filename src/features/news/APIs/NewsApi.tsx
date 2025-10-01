@@ -1,11 +1,11 @@
-import axios from "axios";
-import type {Article,NewsSearchOptions} from "../Types/Types";
+import axios, { AxiosError } from "axios";
+import type { Article, ArticleResponse, NewsApiParams, NewsSearchOptions } from "../Types/Types";
 const MEDIASTACK_KEY = import.meta.env.VITE_MEDIASTACK_KEY;
 const NewsUrl = import.meta.env.VITE_NEWS_URL;
 
 export const fetchArticles = async (options: NewsSearchOptions): Promise<Article[]> => {
   try {
-    const params: any = {
+    const params: NewsApiParams = {
       access_key: MEDIASTACK_KEY,
       keywords: options.keywords || undefined,
       categories: options.categories || undefined,
@@ -21,9 +21,9 @@ export const fetchArticles = async (options: NewsSearchOptions): Promise<Article
       params.date = `${from.toISOString().split("T")[0]},${to.toISOString().split("T")[0]}`;
     }
 
-    const res = await axios.get(NewsUrl, { params });
+    const res = await axios.get<{ data: ArticleResponse[] }>(NewsUrl, { params });
 
-    return res.data.data.map((a: any) => ({
+    return res.data.data.map((a: ArticleResponse): Article => ({
       title: a.title,
       description: a.description,
       url: a.url,
@@ -31,11 +31,12 @@ export const fetchArticles = async (options: NewsSearchOptions): Promise<Article
       image: a.image,
       publishedAt: a.published_at,
     }));
-  } catch (error: any) {
+  } catch (error) {
+    const err = error as AxiosError<{ message?: string }>;
     console.error("Error fetching news:", error);
-    const statusCode = error.response?.status || 500; // fallback to 500
+    const statusCode = err.response?.status || 500; // fallback to 500
     const message =
-      error.response?.data?.message || "Failed to fetch news. Please try again later.";
+      err.response?.data?.message || "Failed to fetch news. Please try again later.";
 
     throw new Error(`Error ${statusCode}: ${message}`);
   }

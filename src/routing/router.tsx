@@ -6,6 +6,7 @@ import WeatherPage from "../features/weather/WeatherPage";
 import CurrencyPage from "../features/currency/CurrencyPage";
 import NewsPage from "../features/news/NewsPage";
 import NotFoundHandler from "../shared/Error/NotFoundHandler";
+import BookMarkNewsPage from "../features/news/BookMarkPage";
 
 const rootRoute = createRootRoute({
   component: RootLayout,
@@ -36,12 +37,19 @@ const newsRoute = createRoute({
   component: NewsPage,
 });
 
+const bookmarksnewsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/bookmarks",
+  component: BookMarkNewsPage,
+});
+
 
 const routeTree = rootRoute.addChildren([
   landingRoute,
   weatherRoute,
   currencyRoute,
   newsRoute,
+  bookmarksnewsRoute
 ]);
 
 const router = new Router({

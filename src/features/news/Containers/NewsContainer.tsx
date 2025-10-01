@@ -1,11 +1,12 @@
 import { useState, useEffect, useRef } from "react";
-import { Grid, Typography, Button } from "@mui/material";
-import ArticleCard from "../Components/ArticleCard";
+import { Typography, Button } from "@mui/material";
 import { categories, countries, languages } from "../Constants/NewsConstants";
 import type { Article, NewsSearchOptions } from "../Types/Types";
 import fetchArticles from "../APIs/NewsApi";
 import { useError } from "../../../shared/Error/context/ErrorContext";
 import { createStyles } from "./NewsContainer.styles";
+import ArticlesGrid from "../Components/ArticlesGrid";
+import { Link } from "@tanstack/react-router";
 
 export default function NewsContainer() {
     const { setError } = useError();
@@ -101,35 +102,29 @@ export default function NewsContainer() {
                     />
                 </label>
             </div>
-
-            <Button className={styles.searchButton} color="primary" variant="contained" onClick={loadArticles}>
-                Search....
-            </Button>
+            <div className={styles.buttonsContainer}>
+                <Button className={styles.button} color="primary" variant="contained" onClick={loadArticles}>
+                    Search....
+                </Button>
+                <Button
+                    color="primary" variant="contained"
+                    className={styles.button}
+                    component={Link}
+                    to="/bookmarks"
+                >
+                    View Bookmarks
+                </Button>
+            </div>
 
             {visibleArticles.length === 0 ? (
                 <p>No articles found.</p>
             ) : (
                 <>
-                    <Grid container spacing={2}>
-                        {visibleArticles.map((a) => (
-                            <Grid size={{ xs: 12, sm: 6, md: 4 }} key={a.url}>
-                                <ArticleCard {...a} />
-                            </Grid>
-                        ))}
-                    </Grid>
-
-                    {visibleCount < allArticles.length && (
-                        <div className={styles.loadMoreContainer}>
-                            <Button
-                                className={styles.loadMoreBtn}
-                                color="primary"
-                                variant="contained"
-                                onClick={() => setVisibleCount((prev) => prev + 6)}
-                            >
-                                Load More
-                            </Button>
-                        </div>
-                    )}
+                    <ArticlesGrid
+                        articles={allArticles}
+                        visibleCount={visibleCount}
+                        onLoadMore={() => setVisibleCount((prev) => prev + 6)}
+                    />
                 </>
             )}
         </div>

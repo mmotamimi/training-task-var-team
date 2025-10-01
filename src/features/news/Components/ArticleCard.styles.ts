@@ -22,7 +22,7 @@ export const createStyles = (theme: Theme) => {
         }),
         description: css({
             fontSize: 16,
-            color: theme.palette.text.secondary,
+            color: theme.palette.text.primary,
             marginBottom: '1.5rem',
         }),
         title: css({
